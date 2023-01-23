@@ -1,9 +1,10 @@
 from twisted.internet.threads import deferToThread
 from opencanary_correlator.common.redismanager import *
 from opencanary_correlator.common.constants import LOG_PORT_SCAN_NET, LOG_PORT_SCAN_HOST
+#JAA: added explicit hierarchy reference for next 3 modules
 from opencanary_correlator.common.utils import current_time_offset
 from opencanary_correlator.common.notifications import notify
-from logs import logger
+from opencanary_correlator.common.logs import logger
 import simplejson
 import datetime
 import opencanary_correlator.common.config as c
