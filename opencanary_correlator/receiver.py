@@ -26,7 +26,9 @@ class CorrelatorReceiver(LineReceiver):
             event = json.loads(line)
         except Exception as e:
             print >> sys.stderr, "Failed to decode line"
-            print e
+            # Corrected for python 3.x
+            #print e
+            print (e)
             return
 
         process_device_report(event)
@@ -42,9 +44,14 @@ def main():
     try:
         config = CorrelatorOptions()
         config.parseOptions()
-    except usage.UsageError, ue:
+        
+    # Corrected for python 3.x
+    # except usage.UsageError, ue:
+    except usage.UsageError as ue:
         print >> sys.stderr, '%s:' % sys.argv[0], ue
-        print config
+        # Corrected for python 3.x
+        # print config
+        print (config)
         sys.exit(1)
 
     common.config.config = common.config.Config(config.opts['config'])
