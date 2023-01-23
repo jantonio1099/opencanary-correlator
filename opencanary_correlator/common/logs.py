@@ -9,7 +9,8 @@ class RedisHandler(logging.Handler):
         #this song and dance avoids a circular dependency at load time,
         #by importing only when this class is instatiated
         super(RedisHandler, self).__init__(level=level)
-        from queries import write_log
+        #JAA: added explicit hierarchy reference for module
+        from opencanary_correlator.common.queries import write_log
         self.write_log = write_log
 
     def emit(self, record):
