@@ -45,6 +45,8 @@ def mandrill_send(to=None, subject=None, message=None, reply_to=None):
         # The new line should be: result = mandrill_client.messages.send(message=message, asy=False, ip_pool='Main Pool')
         result = mandrill_client.messages.send(message=message, asy=False, ip_pool='Main Pool')
 
+    # Corrected for Python 3.x    
+    #except mandrill.Error, e:
     except mandrill.Error, e:
         # print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
         # Corrected for Python 3.x
