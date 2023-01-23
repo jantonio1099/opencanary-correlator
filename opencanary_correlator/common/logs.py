@@ -28,8 +28,9 @@ logger = None
 
 # In Python 3.x this will fail as dict_keys() is no longer returns a list, but an object.
 # The following will provide an iterable list (if that is still the right thing to do)
-# existing_logger_names = list(logging.getLogger().manager.loggerDict.keys())
-existing_logger_names = logging.getLogger().manager.loggerDict.keys()
+# 
+# orig: existing_logger_names = logging.getLogger().manager.loggerDict.keys()
+existing_logger_names = list(logging.getLogger().manager.loggerDict.keys())
 if len(existing_logger_names) > 0:
     lgr = existing_logger_names[0]
     logger = logging.getLogger(lgr)
