@@ -60,7 +60,9 @@ def handleSYNPacketNetworkPortscanDetector(data=None):
     """
 
     try:
-        network_scan_target_key = KEY_TRACK_NETWORK_PORT_SCAN + data['src_host'] + ':' + data['dst_port'] + ':targets'
+        # Corrected for Python 3.x (src_host, dst_port) are int and needed to be converted to strings
+        # orig: network_scan_target_key = KEY_TRACK_NETWORK_PORT_SCAN + data['src_host'] + ':' + data['dst_port'] + ':targets'
+        network_scan_target_key = KEY_TRACK_NETWORK_PORT_SCAN + str(data['src_host']) + ':' + str(data['dst_port']) + ':targets'
         try:
             dst_host = data['reported_dst_host']
         except KeyError:
