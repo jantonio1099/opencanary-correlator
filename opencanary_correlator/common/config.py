@@ -64,7 +64,9 @@ class Config:
             with open(cfg, "w") as f:
                 json.dump(self.__config, f)
 
-        except Exception, e:
+        # Corrected for Python 3.x        
+        # except Exception, e:
+        except Exception as e:
             # Corrected for Python 3.x
             # print "[-] Failed to save config file %s" % e
             print ("[-] Failed to save config file %s" % e)
