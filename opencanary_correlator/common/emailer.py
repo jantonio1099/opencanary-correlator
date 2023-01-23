@@ -41,8 +41,11 @@ def mandrill_send(to=None, subject=None, message=None, reply_to=None):
             message["headers"] = { "Reply-To": reply_to }
 
         # With Python 3.7 this line will fail because async is a reserved word
+        # result = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
         # The new line should be: result = mandrill_client.messages.send(message=message, asy=False, ip_pool='Main Pool')
-        result = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
+        result = mandrill_client.messages.send(message=message, asy=False, ip_pool='Main Pool')
 
     except mandrill.Error, e:
-        print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
+        # print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
+        # Corrected for Python 3.x
+        print ('A mandrill error occurred: %s - %s' % (e.__class__, e))
