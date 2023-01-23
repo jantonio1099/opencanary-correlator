@@ -3,7 +3,8 @@ logger = logging.getLogger('opencanary-correlator')
 
 from opencanary_correlator.common.constants import *
 
-from common.logs import RedisHandler
+#JAA: added explicit hierarchy reference for module
+from opencanary_correlator.common.logs import RedisHandler
 
 logger.setLevel(logging.DEBUG)
 redis_h = RedisHandler()
