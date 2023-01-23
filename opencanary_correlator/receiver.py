@@ -15,7 +15,9 @@ class CorrelatorOptions(usage.Options):
         if self.opts['config'] is None:
             conf = resource_filename(__name__, 'opencanary_correlator.conf')
             self.opts['config'] = conf
-            print >> sys.stderr, "Warning: no config file specified. Using the template config (which does not have any alerting configured):\n%s\n" % conf
+            # JAA: Changed for Python 3.x
+            #print >> sys.stderr, "Warning: no config file specified. Using the template config (which does not have any alerting configured):\n%s\n" % conf
+            print ("Warning: no config file specified. Using the template config (which does not have any alerting configured):\n%s\n" % conf, file=sys.stderr)
 
 class CorrelatorReceiver(LineReceiver):
     delimiter = "\n"
@@ -24,9 +26,11 @@ class CorrelatorReceiver(LineReceiver):
     def lineReceived(self, line):
         try:
             event = json.loads(line)
+        # JAA: Changed for Python 3.x    
         except Exception as e:
-            print >> sys.stderr, "Failed to decode line"
-            # Corrected for python 3.x
+            # print >> sys.stderr, "Failed to decode line"
+            print ("Failed to decode line", file=sys.stderr)
+                        
             #print e
             print (e)
             return
@@ -49,8 +53,9 @@ def main():
     # Corrected for python 3.x
     # except usage.UsageError, ue:
     except usage.UsageError as ue:
-        print >> sys.stderr, '%s:' % sys.argv[0], ue
-        # Corrected for python 3.x
+        #print >> sys.stderr, '%s:' % sys.argv[0], ue
+        print ('%s:' % sys.argv[0], ue, file=sys.stderr)
+        
         # print config
         print (config)
         sys.exit(1)
