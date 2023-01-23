@@ -20,7 +20,9 @@ class CorrelatorOptions(usage.Options):
             print ("Warning: no config file specified. Using the template config (which does not have any alerting configured):\n%s\n" % conf, file=sys.stderr)
 
 class CorrelatorReceiver(LineReceiver):
-    delimiter = "\n"
+    # JAA: Corrected delimiter value to account Python 3.x bytes-string typing of incoming data stream 
+    # delimiter = "\n"
+    delimiter = b"\r\n"
     MAX_LENGTH = 16384
 
     def lineReceived(self, line):
