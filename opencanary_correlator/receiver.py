@@ -61,9 +61,10 @@ def main():
         # print config
         print (config)
         sys.exit(1)
-
-    common.config.config = common.config.Config(config.opts['config'])
-
+        
+    # Removed (temporarily as python 3.x erroring on common (object)
+    # common.config.config = common.config.Config(config.opts['config'])
+    
     f = CorrelatorFactory()
     reactor.listenTCP(1514, f, interface=config.opts['ip'])
     reactor.run()
