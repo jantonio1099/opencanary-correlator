@@ -38,7 +38,8 @@ class CorrelatorFactory(protocol.Factory):
 
 def main():
     from twisted.python import log
-    import common.config
+    #JAA: added explicit hierarchy reference for module
+    import opencanary_correlator.common.config
 
     log.logfile=sys.stderr
     try:
