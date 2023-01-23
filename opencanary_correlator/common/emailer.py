@@ -47,7 +47,7 @@ def mandrill_send(to=None, subject=None, message=None, reply_to=None):
 
     # Corrected for Python 3.x    
     #except mandrill.Error, e:
-    except mandrill.Error, e:
+    except mandrill.Error as e:
         # print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
         # Corrected for Python 3.x
         print ('A mandrill error occurred: %s - %s' % (e.__class__, e))
