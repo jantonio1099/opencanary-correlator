@@ -155,9 +155,16 @@ class Incident(object):
             self.data['created'] = now
             self.data['events_list'] = repr(now)
             self.data['events_count'] = 1
-            self.data['acknowledged'] = False
-            self.data['notified'] = False
-            self.data['updated'] = True
+           
+            # Modified to work with REDIS CODE
+            #self.data['acknowledged'] = False
+            #self.data['notified'] = False
+            #self.data['updated'] = True
+            
+            self.data['acknowledged'] = 'False'
+            self.data['notified'] = 'False'
+            self.data['updated'] = 'True'
+            
             self.data['description'] = self.DESCRIPTION
             if self.data.has_key('logdata'):
                 if type(self.data['logdata']) == list:
@@ -170,11 +177,17 @@ class Incident(object):
             deferToThread(notify, self)
 
     def unacknowledge(self,):
-        self.data['acknowledged'] = False
+        
+        # Modified to work with REDIS CODE
+        # self.data['acknowledged'] = False
+        self.data['acknowledged'] = 'False'
         self.save()
 
     def acknowledge(self,):
-        self.data['acknowledged'] = True
+        
+        # Modified to work with REDIS CODE
+        #self.data['acknowledged'] = True
+        self.data['acknowledged'] = 'True'
         self.save()
 
     def format_title(self,):
