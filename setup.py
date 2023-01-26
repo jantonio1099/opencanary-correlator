@@ -12,9 +12,9 @@ setup(
     install_requires=[
         "simplejson",
         "cffi",
-        "docopt=0.4.0",
+        "docopt==0.4.0",
         "httplib2",
-        "mandrill=1.0.57",
+        "mandrill==1.0.57",
         "pycparser",
         "PyNaCl",
         "pytz",
