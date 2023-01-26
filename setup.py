@@ -14,7 +14,7 @@ setup(
         "cffi",
         "docopt==0.4.0",
         "httplib2",
-        "mandrill==1.0.57",
+        "mandrill==1.0.60",
         "pycparser",
         "PyNaCl",
         "pytz",
