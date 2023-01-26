@@ -156,7 +156,7 @@ class Incident(object):
             self.data['events_list'] = repr(now)
             self.data['events_count'] = 1
            
-            # Modified to work with REDIS CODE
+            # JAA: Modified to work with redis-py > 3.0
             #self.data['acknowledged'] = False
             #self.data['notified'] = False
             #self.data['updated'] = True
@@ -172,20 +172,23 @@ class Incident(object):
                 else:
                     self.data['logdata'] = simplejson.dumps([self.data['logdata']])
             redis.hmset(incident_key, self.data)
-            redis.zadd(KEY_INCIDENTS, now, incident_key)
+            
+            # JAA: Modified to work with redis-py > 3.0, 2nd parm = dict
+            # redis.zadd(KEY_INCIDENTS, now, incident_key)
+            redis.zadd(KEY_INCIDENTS, {now: incident_key})
 
             deferToThread(notify, self)
 
     def unacknowledge(self,):
         
-        # Modified to work with REDIS CODE
+        # JAA: Modified to work with redis-py > 3.0
         # self.data['acknowledged'] = False
         self.data['acknowledged'] = 'False'
         self.save()
 
     def acknowledge(self,):
         
-        # Modified to work with REDIS CODE
+        # JAA: Modified to work with redis-py > 3.0
         #self.data['acknowledged'] = True
         self.data['acknowledged'] = 'True'
         self.save()
