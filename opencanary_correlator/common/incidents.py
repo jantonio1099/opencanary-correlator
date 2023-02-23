@@ -175,7 +175,7 @@ class Incident(object):
             
             # JAA: Modified to work with redis-py > 3.0, 2nd parm = dict
             # redis.zadd(KEY_INCIDENTS, now, incident_key)
-            redis.zadd(KEY_INCIDENTS, {now: incident_key})
+            redis.zadd(KEY_INCIDENTS, {incident_key: now})
 
             deferToThread(notify, self)
 
