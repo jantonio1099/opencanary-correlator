@@ -87,5 +87,5 @@ class ConfigException(Exception):
 
     def __repr__(self):
         return "<%s %s (%s)>" % (self.__class__.__name__, self.key, self.msg)
-
-config = None
+#JAA Change for Python 3.x
+config = Config()
