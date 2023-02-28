@@ -63,7 +63,7 @@ def main():
         sys.exit(1)
         
     # Corrected for python 3.x
-    # c.config = c.Config(config.opts['config'])
+    c.config = c.Config(config.opts['config'])
     
     f = CorrelatorFactory()
     reactor.listenTCP(1514, f, interface=config.opts['ip'])
