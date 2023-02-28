@@ -45,7 +45,7 @@ class CorrelatorFactory(protocol.Factory):
 def main():
     from twisted.python import log
     #JAA: added explicit hierarchy reference for module
-    import opencanary_correlator.common.config
+    import opencanary_correlator.common.config as c
 
     log.logfile=sys.stderr
     try:
@@ -62,8 +62,8 @@ def main():
         print (config)
         sys.exit(1)
         
-    # Removed (temporarily as python 3.x erroring on common (object)
-    # common.config.config = common.config.Config(config.opts['config'])
+    # Corrected for python 3.x
+    # c.config = c.Config(config.opts['config'])
     
     f = CorrelatorFactory()
     reactor.listenTCP(1514, f, interface=config.opts['ip'])
